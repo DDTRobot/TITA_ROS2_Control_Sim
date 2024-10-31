@@ -36,6 +36,9 @@ sudo apt install ros-humble-gazebo-ros
 ```bash
 mkdir tita_ws/src && cd tita_ws/src
 git clone https://github.com/DDTRobot/TITA_Description.git
+sudo mkdir -p /usr/share/robot_description
+sudo cp -r TITA_Description/tita /usr/share/robot_description/tita
+git clone https://github.com/DDTRobot/TITA_ROS2_Control_Sim.git
 colcon build --packages-up-to sim_bringup 
 source install/setup.bash
 ros2 launch sim_bringup sim_bringup.launch.py sim_env:=gazebo #[option: webots, gazebo]

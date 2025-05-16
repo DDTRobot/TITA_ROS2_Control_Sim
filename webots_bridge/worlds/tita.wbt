@@ -1,0 +1,493 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/CircleArena.proto"
+
+WorldInfo {
+  ERP 0.8
+  basicTimeStep 2
+  dragForceScale 1000
+  contactProperties [
+    ContactProperties {
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.03686550358141262 0.007864391678521451 -0.9992892904405688 2.7215304420489055
+  position 1.7337874188397435 0.944036639213242 0.5419909603843084
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+CircleArena {
+  radius 100
+  floorTileSize 2 2
+}
+Robot {
+  name "Ros2Supervisor"
+  controller "<extern>"
+  supervisor TRUE
+}
+Robot {
+  translation 0.02 0 0.21
+  children [
+    Accelerometer {
+    }
+    InertialUnit {
+      name "imu"
+    }
+    Gyro {
+    }
+    GPS {
+    }
+    Shape {
+      appearance DEF base_link_material PBRAppearance {
+        baseColor 0.75294 0.75294 0.75294
+        roughness 1
+        metalness 0
+      }
+      geometry DEF base_link Mesh {
+        url [
+          "/usr/share/robot_description/tita/meshes/base_link.STL"
+        ]
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 1 4e-06 -4e-06
+        anchor 0 0.0895 0
+        minStop -0.785398
+        maxStop 0.785398
+      }
+      device [
+        RotationalMotor {
+          name "joint_left_leg_1"
+          minPosition -0.785398
+          maxPosition 0.785398
+          maxTorque 10000
+        }
+        PositionSensor {
+          name "joint_left_leg_1_sensor"
+        }
+      ]
+      endPoint Solid {
+        translation 0 0.0895 0
+        rotation 0.5773496025226483 0.5773516025212714 0.5773496025226483 2.094399
+        children [
+          Shape {
+            appearance DEF left_leg_1_material PBRAppearance {
+              baseColor 0.75294 0.75294 0.75294
+              roughness 1
+              metalness 0
+            }
+            geometry DEF left_leg_1 Mesh {
+              url [
+                "/usr/share/robot_description/tita/meshes/left_leg_1.STL"
+              ]
+            }
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              position 1.3
+              axis 1 -4e-06 -4e-06
+              anchor 0.1426 0 0
+              minStop -1.919862
+              maxStop 3.490659
+            }
+            device [
+              RotationalMotor {
+                name "joint_left_leg_2"
+                minPosition -1.919862
+                maxPosition 3.490659
+                maxTorque 10000
+              }
+              PositionSensor {
+                name "joint_left_leg_2_sensor"
+              }
+            ]
+            endPoint Solid {
+              translation 0.1426 0 0
+              rotation -0.13376939565347 0.9819421850932744 -0.13377329300256882 1.589022033548756
+              children [
+                Shape {
+                  appearance DEF left_leg_2_material PBRAppearance {
+                    baseColor 0.75294 0.75294 0.75294
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF left_leg_2 Mesh {
+                    url [
+                      "/usr/share/robot_description/tita/meshes/left_leg_2.STL"
+                    ]
+                  }
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    position -2.6
+                    axis 0 0 1
+                    anchor 0.2 0 0
+                    minStop -2.670354
+                    maxStop -0.698132
+                  }
+                  device [
+                    RotationalMotor {
+                      name "joint_left_leg_3"
+                      minPosition -2.670354
+                      maxPosition -0.698132
+                      maxTorque 10000
+                    }
+                    PositionSensor {
+                      name "joint_left_leg_3_sensor"
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0.2 0 0
+                    rotation 0 0 -1 2.6
+                    children [
+                      Shape {
+                        appearance DEF left_leg_3_material PBRAppearance {
+                          baseColor 0.75294 0.75294 0.75294
+                          roughness 1
+                          metalness 0
+                        }
+                        geometry DEF left_leg_3 Mesh {
+                          url [
+                            "/usr/share/robot_description/tita/meshes/left_leg_3.STL"
+                          ]
+                        }
+                      }
+                      HingeJoint {
+                        jointParameters HingeJointParameters {
+                          axis 0 0 1
+                          anchor 0.2 0 0.0514
+                        }
+                        device [
+                          RotationalMotor {
+                            name "joint_left_leg_4"
+                            minPosition -6.283185
+                            maxPosition 6.283185
+                            maxTorque 10000
+                          }
+                          PositionSensor {
+                            name "joint_left_leg_4_sensor"
+                          }
+                        ]
+                        endPoint Solid {
+                          translation 0.2 0 0.0514
+                          children [
+                            Shape {
+                              appearance DEF left_leg_4_material PBRAppearance {
+                                baseColor 0.69804 0.69804 0.69804
+                                roughness 1
+                                metalness 0
+                              }
+                              geometry DEF left_leg_4 Mesh {
+                                url [
+                                  "/usr/share/robot_description/tita/meshes/left_leg_4.STL"
+                                ]
+                              }
+                            }
+                          ]
+                          name "left_leg_4"
+                          boundingObject Cylinder {
+                            height 0.034
+                            radius 0.0925
+                          }
+                          physics Physics {
+                            density -1
+                            mass 1.5094
+                            centerOfMass [
+                              -2e-06 -2e-06 -0.000956
+                            ]
+                            inertiaMatrix [
+                              0.0035466 0.0035053 0.0069049
+                              6.9816e-06 -2.3224e-07 -1.7712e-08
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                    name "left_leg_3"
+                    boundingObject Pose {
+                      translation 0.14 0.016 -0.002
+                      rotation 0 0 1 -0.13090530717958604
+                      children [
+                        Box {
+                          size 0.2 0.07 0.05
+                        }
+                      ]
+                    }
+                    physics Physics {
+                      density -1
+                      mass 0.57244
+                      centerOfMass [
+                        0.095348 0.011698 0.001838
+                      ]
+                      inertiaMatrix [
+                        0.00030595 0.0032009 0.0034209
+                        0.00035537 -0.00011764 1.129e-05
+                      ]
+                    }
+                  }
+                }
+              ]
+              name "left_leg_2"
+              physics Physics {
+                density -1
+                mass 3.0984
+                centerOfMass [
+                  0.021763 0.001907 -0.027868
+                ]
+                inertiaMatrix [
+                  0.0029784 0.0064836 0.0088353
+                  -9.6332e-05 7.878e-05 4.3691e-06
+                ]
+              }
+            }
+          }
+        ]
+        name "left_leg_1"
+        physics Physics {
+          density -1
+          mass 2.064
+          centerOfMass [
+            0.001602 5e-05 0.000638
+          ]
+          inertiaMatrix [
+            0.0043044 0.0029982 0.0022703
+            -1.3538e-07 8.054e-05 -1.5446e-06
+          ]
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 1 4e-06 -4e-06
+        anchor 0 -0.0895 0
+        minStop -0.785398
+        maxStop 0.785398
+      }
+      device [
+        RotationalMotor {
+          name "joint_right_leg_1"
+          minPosition -0.785398
+          maxPosition 0.785398
+          maxTorque 10000
+        }
+        PositionSensor {
+          name "joint_right_leg_1_sensor"
+        }
+      ]
+      endPoint Solid {
+        translation 0 -0.0895 0
+        rotation 0.5773496025226483 0.5773516025212714 0.5773496025226483 2.094399
+        children [
+          Shape {
+            appearance DEF right_leg_1_material PBRAppearance {
+              baseColor 0.75294 0.75294 0.75294
+              roughness 1
+              metalness 0
+            }
+            geometry DEF right_leg_1 Mesh {
+              url [
+                "/usr/share/robot_description/tita/meshes/right_leg_1.STL"
+              ]
+            }
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              position 1.3
+              axis 1 -4e-06 -4e-06
+              anchor -0.1426 0 0
+              minStop -1.919862
+              maxStop 3.490659
+            }
+            device [
+              RotationalMotor {
+                name "joint_right_leg_2"
+                minPosition -1.919862
+                maxPosition 3.490659
+                maxTorque 10000
+              }
+              PositionSensor {
+                name "joint_right_leg_2_sensor"
+              }
+            ]
+            endPoint Solid {
+              translation -0.1426 0 0
+              rotation -0.13376939565347 0.9819421850932744 -0.13377329300256882 1.589022033548756
+              children [
+                Shape {
+                  appearance DEF right_leg_2_material PBRAppearance {
+                    baseColor 0.75294 0.75294 0.75294
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF right_leg_2 Mesh {
+                    url [
+                      "/usr/share/robot_description/tita/meshes/right_leg_2.STL"
+                    ]
+                  }
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    position -2.6
+                    axis 0 0 1
+                    anchor 0.2 0 0
+                    minStop -2.670354
+                    maxStop -0.698132
+                  }
+                  device [
+                    RotationalMotor {
+                      name "joint_right_leg_3"
+                      minPosition -2.670354
+                      maxPosition -0.698132
+                      maxTorque 10000
+                    }
+                    PositionSensor {
+                      name "joint_right_leg_3_sensor"
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0.2 0 0
+                    rotation 0 0 -1 2.6
+                    children [
+                      Shape {
+                        appearance DEF right_leg_3_material PBRAppearance {
+                          baseColor 0.75294 0.75294 0.75294
+                          roughness 1
+                          metalness 0
+                        }
+                        geometry DEF right_leg_3 Mesh {
+                          url [
+                            "/usr/share/robot_description/tita/meshes/right_leg_3.STL"
+                          ]
+                        }
+                      }
+                      HingeJoint {
+                        jointParameters HingeJointParameters {
+                          axis 0 0 1
+                          anchor 0.2 0 -0.0514
+                        }
+                        device [
+                          RotationalMotor {
+                            name "joint_right_leg_4"
+                            minPosition -6.283185
+                            maxPosition 6.283185
+                            maxTorque 10000
+                          }
+                          PositionSensor {
+                            name "joint_right_leg_4_sensor"
+                          }
+                        ]
+                        endPoint Solid {
+                          translation 0.2 0 -0.0514
+                          children [
+                            Shape {
+                              appearance DEF right_leg_4_material PBRAppearance {
+                                baseColor 0.69804 0.69804 0.69804
+                                roughness 1
+                                metalness 0
+                              }
+                              geometry DEF right_leg_4 Mesh {
+                                url [
+                                  "/usr/share/robot_description/tita/meshes/right_leg_4.STL"
+                                ]
+                              }
+                            }
+                          ]
+                          name "right_leg_4"
+                          boundingObject Cylinder {
+                            height 0.034
+                            radius 0.0925
+                          }
+                          physics Physics {
+                            density -1
+                            mass 1.5094
+                            centerOfMass [
+                              -2e-06 -2e-06 0.000956
+                            ]
+                            inertiaMatrix [
+                              0.0035465 0.0035052 0.0069047
+                              7.0548e-06 2.3146e-07 1.9287e-08
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                    name "right_leg_3"
+                    boundingObject Pose {
+                      translation 0.14 0.016 -0.002
+                      rotation 0 0 1 -0.13090530717958604
+                      children [
+                        Box {
+                          size 0.2 0.07 0.05
+                        }
+                      ]
+                    }
+                    physics Physics {
+                      density -1
+                      mass 0.57244
+                      centerOfMass [
+                        0.095348 0.011698 -0.001838
+                      ]
+                      inertiaMatrix [
+                        0.00030595 0.0032009 0.0034209
+                        0.00035537 0.00011764 -1.129e-05
+                      ]
+                    }
+                  }
+                }
+              ]
+              name "right_leg_2"
+              physics Physics {
+                density -1
+                mass 3.0987
+                centerOfMass [
+                  0.021763 0.001906 0.027873
+                ]
+                inertiaMatrix [
+                  0.0029784 0.0064836 0.0088353
+                  -9.6347e-05 -7.8776e-05 -4.3711e-06
+                ]
+              }
+            }
+          }
+        ]
+        name "right_leg_1"
+        physics Physics {
+          density -1
+          mass 2.064
+          centerOfMass [
+            -0.001602 5e-05 0.000638
+          ]
+          inertiaMatrix [
+            0.0043044 0.0029982 0.0022703
+            1.3538e-07 -8.054e-05 -1.5359e-06
+          ]
+        }
+      }
+    }
+  ]
+  name "tita_webots"
+  boundingObject Pose {
+    translation 0 0 0.017
+    children [
+      Box {
+        size 0.47 0.3 0.19
+      }
+    ]
+  }
+  physics Physics {
+    density -1
+    mass 13.2
+    centerOfMass [
+      0.020452 4e-06 0.01871
+    ]
+    inertiaMatrix [
+      0.061855 0.036934 0.071232
+      -2.6029e-05 0.00081082 -1.7269e-05
+    ]
+  }
+  controller "<extern>"
+}

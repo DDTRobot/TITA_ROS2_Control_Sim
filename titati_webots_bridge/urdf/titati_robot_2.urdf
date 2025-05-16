@@ -1,0 +1,1167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="titatit_robot_2">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="9.657E-05 4.946E-06 0.018311"
+        rpy="0 0 0" />
+      <mass
+        value="26.085" />
+      <inertia
+        ixx="0.13241"
+        ixy="-1.5238E-05"
+        ixz="2.9159E-07"
+        iyy="0.21427"
+        iyz="3.83E-07"
+        izz="0.29638" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="hip_fl">
+    <inertial>
+      <origin
+        xyz="0.00160252327437051 5.02529016259551E-05 0.000637997677409064"
+        rpy="0 0 0" />
+      <mass
+        value="2.06397198838348" />
+      <inertia
+        ixx="0.0043043711277157"
+        ixy="-1.3538484105872E-07"
+        ixz="8.05398285601337E-05"
+        iyy="0.00299819513265211"
+        iyz="-1.54464162439579E-06"
+        izz="0.00227034785673471" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/hip_fl.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/hip_fl.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_frontleft_leg_1"
+    type="revolute">
+    <origin
+      xyz="0.26556 0.0895 0"
+      rpy="1.5708 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="hip_fl" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="thigh_fl">
+    <inertial>
+      <origin
+        xyz="0.0198087947770108 0.000674375301071346 -0.028030071953166"
+        rpy="0 0 0" />
+      <mass
+        value="3.08318468505764" />
+      <inertia
+        ixx="0.00295323073173288"
+        ixy="-0.000104303195974061"
+        ixz="8.03870095692775E-05"
+        iyy="0.00650084806449413"
+        iyz="9.51050169384557E-06"
+        izz="0.00882715478563661" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/thigh_fl.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/thigh_fl.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_frontleft_leg_2"
+    type="revolute">
+    <origin
+      xyz="0.1426 0 0"
+      rpy="-1.5708 0 -1.5708" />
+    <parent
+      link="hip_fl" />
+    <child
+      link="thigh_fl" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="calf_fl">
+    <inertial>
+      <origin
+        xyz="0.0887046556201021 0.0123923322238959 -0.0124066502013346"
+        rpy="0 0 0" />
+      <mass
+        value="0.137570578634325" />
+      <inertia
+        ixx="6.12034535398405E-05"
+        ixy="0.000110157800711769"
+        ixz="1.89977377880844E-06"
+        iyy="0.000500609915589641"
+        iyz="-1.74999914769045E-06"
+        izz="0.000559584424604123" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/calf_fl.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/calf_fl.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_frontleft_leg_3"
+    type="revolute">
+    <origin
+      xyz="0.2 0 0"
+      rpy="0 0 -0.69813" />
+    <parent
+      link="thigh_fl" />
+    <child
+      link="calf_fl" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="foot_fl">
+    <inertial>
+      <origin
+        xyz="-1.95493845750461E-07 -2.7953368010869E-06 -0.000956162206890376"
+        rpy="0 0 0" />
+      <mass
+        value="1.5094078755691" />
+      <inertia
+        ixx="0.00351551678639572"
+        ixy="1.91479960012217E-05"
+        ixz="-1.35710423134492E-07"
+        iyy="0.00353644161729022"
+        iyz="-1.89288764844261E-07"
+        izz="0.00690491426900185" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/foot_fl.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.698039215686274 0.698039215686274 0.698039215686274 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/foot_fl.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_frontleft_leg_4"
+    type="continuous">
+    <origin
+      xyz="0.2 0 0.0514"
+      rpy="0 0 -0.87266" />
+    <parent
+      link="calf_fl" />
+    <child
+      link="foot_fl" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="hip_fr">
+    <inertial>
+      <origin
+        xyz="0.00160252297910093 -5.02528763268312E-05 0.000638012238108419"
+        rpy="0 0 0" />
+      <mass
+        value="2.06397190555531" />
+      <inertia
+        ixx="0.00430437092985315"
+        ixy="1.35380384225143E-07"
+        ixz="8.05396951733295E-05"
+        iyy="0.00299819494811765"
+        iyz="1.53586089418605E-06"
+        izz="0.00227034789019073" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/hip_fr.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/hip_fr.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_frontright_leg_1"
+    type="revolute">
+    <origin
+      xyz="0.26556 -0.0895 0"
+      rpy="-1.5708 0 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="hip_fr" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="thigh_fr">
+    <inertial>
+      <origin
+        xyz="0.0198087014081886 -0.000674482855501034 -0.0280301093531328"
+        rpy="0 0 0" />
+      <mass
+        value="3.08319251948682" />
+      <inertia
+        ixx="0.00295324326282497"
+        ixy="0.000104319176394184"
+        ixz="8.03836095808116E-05"
+        iyy="0.00650084021284014"
+        iyz="-9.51221262655706E-06"
+        izz="0.00882715494821773" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/thigh_fr.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/thigh_fr.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_frontright_leg_2"
+    type="revolute">
+    <origin
+      xyz="0.1426 0 0"
+      rpy="1.5708 0 1.5708" />
+    <parent
+      link="hip_fr" />
+    <child
+      link="thigh_fr" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="calf_fr">
+    <inertial>
+      <origin
+        xyz="0.0953484729967358 -0.0116984049286687 0.00183801243684462"
+        rpy="0 0 0" />
+      <mass
+        value="0.572442933713084" />
+      <inertia
+        ixx="0.000305949337207612"
+        ixy="-0.000355368616376005"
+        ixz="-0.000117644209339197"
+        iyy="0.00320088994828871"
+        iyz="-1.12898419970661E-05"
+        izz="0.00342088883166828" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/calf_fr.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/calf_fr.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_frontright_leg_3"
+    type="revolute">
+    <origin
+      xyz="0.2 0 0"
+      rpy="0 0 0.69813" />
+    <parent
+      link="thigh_fr" />
+    <child
+      link="calf_fr" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="foot_fr">
+    <inertial>
+      <origin
+        xyz="-3.1517325252417E-07 2.84212870238498E-06 -0.000955954818488869"
+        rpy="0 0 0" />
+      <mass
+        value="1.50935515280107" />
+      <inertia
+        ixx="0.00351532251576565"
+        ixy="-1.90992632091196E-05"
+        ixz="-1.3400262526038E-07"
+        iyy="0.00353638524805248"
+        iyz="1.89702766524702E-07"
+        izz="0.00690465816154385" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/foot_fr.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.698039215686274 0.698039215686274 0.698039215686274 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/foot_fr.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_frontright_leg_4"
+    type="continuous">
+    <origin
+      xyz="0.2 0 0.0514"
+      rpy="0 0 0.87266" />
+    <parent
+      link="calf_fr" />
+    <child
+      link="foot_fr" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="hip_rl">
+    <inertial>
+      <origin
+        xyz="0.00160252303071508 5.02528474945751E-05 -0.000638012448431757"
+        rpy="0 0 0" />
+      <mass
+        value="2.06397191216534" />
+      <inertia
+        ixx="0.00430437095262798"
+        ixy="-1.35381662264338E-07"
+        ixz="-8.05396948328766E-05"
+        iyy="0.00299819496931034"
+        iyz="1.53585466044396E-06"
+        izz="0.00227034789131585" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/hip_rl.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/hip_rl.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_rearleft_leg_1"
+    type="revolute">
+    <origin
+      xyz="-0.26519 0.0895 -0.0002"
+      rpy="1.5708 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="hip_rl" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="thigh_rl">
+    <inertial>
+      <origin
+        xyz="0.0198087014055294 -0.000674482854044589 -0.028030109356197"
+        rpy="0 0 0" />
+      <mass
+        value="3.08319251976364" />
+      <inertia
+        ixx="0.00295324326320529"
+        ixy="0.000104319176490712"
+        ixz="8.03836095527048E-05"
+        iyy="0.00650084021338668"
+        iyz="-9.51221265252457E-06"
+        izz="0.00882715494913628" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/thigh_rl.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/thigh_rl.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_rearleft_leg_2"
+    type="revolute">
+    <origin
+      xyz="0.1426 0 0"
+      rpy="-1.5708 0 -1.5708" />
+    <parent
+      link="hip_rl" />
+    <child
+      link="thigh_rl" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="calf_rl">
+    <inertial>
+      <origin
+        xyz="0.0953484727396168 -0.0116984048328177 0.0018380125467615"
+        rpy="0 0 0" />
+      <mass
+        value="0.572442929838279" />
+      <inertia
+        ixx="0.000305949336857302"
+        ixy="-0.000355368616909528"
+        ixz="-0.000117644209341265"
+        iyy="0.00320088994750229"
+        iyz="-1.12898419986538E-05"
+        izz="0.00342088883051964" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/calf_rl.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/calf_rl.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_rearleft_leg_3"
+    type="revolute">
+    <origin
+      xyz="0.2 0 0"
+      rpy="0 0 0.69813" />
+    <parent
+      link="thigh_rl" />
+    <child
+      link="calf_rl" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="foot_rl">
+    <inertial>
+      <origin
+        xyz="3.15173430132099E-07 -2.84212862960986E-06 -0.000955954818523563"
+        rpy="0 0 0" />
+      <mass
+        value="1.50935515279616" />
+      <inertia
+        ixx="0.00351532251574833"
+        ixy="-1.9099263214965E-05"
+        ixz="1.34002623733868E-07"
+        iyy="0.00353638524805258"
+        iyz="-1.89702767150021E-07"
+        izz="0.00690465816152551" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/foot_rl.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.698039215686274 0.698039215686274 0.698039215686274 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/foot_rl.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_rearleft_leg_4"
+    type="continuous">
+    <origin
+      xyz="0.2 0 0.0514"
+      rpy="0 0 -2.2689" />
+    <parent
+      link="calf_rl" />
+    <child
+      link="foot_rl" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="hip_rr">
+    <inertial>
+      <origin
+        xyz="-0.00286480334592079 -6.35842864259023E-05 0.000426788587200466"
+        rpy="0 0 0" />
+      <mass
+        value="1.63084425700863" />
+      <inertia
+        ixx="0.00269352801112433"
+        ixy="1.35609973569863E-07"
+        ixz="-6.08255943065929E-07"
+        iyy="0.00162533824732704"
+        iyz="-1.54035336272274E-06"
+        izz="0.00163886893744308" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/hip_rr.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/hip_rr.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_rearright_leg_1"
+    type="revolute">
+    <origin
+      xyz="-0.26519 -0.0895 -0.0002"
+      rpy="-1.5708 0 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="hip_rr" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="thigh_rr">
+    <inertial>
+      <origin
+        xyz="0.0276094155787712 0.00453983352350373 -0.00262232452614469"
+        rpy="0 0 0" />
+      <mass
+        value="0.371521621233086" />
+      <inertia
+        ixx="4.61804497008009E-05"
+        ixy="8.85553531935423E-06"
+        ixz="6.29959568374985E-06"
+        iyy="0.000587058171738918"
+        iyz="6.66233912660531E-07"
+        izz="0.000602910501825973" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/thigh_rr.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/thigh_rr.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_rearright_leg_2"
+    type="revolute">
+    <origin
+      xyz="0.1426 0 0"
+      rpy="1.5708 0 1.5708" />
+    <parent
+      link="hip_rr" />
+    <child
+      link="thigh_rr" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="calf_rr">
+    <inertial>
+      <origin
+        xyz="0.095348323675243 0.0116984490839261 0.00183798058545342"
+        rpy="0 0 0" />
+      <mass
+        value="0.572443956701231" />
+      <inertia
+        ixx="0.000305949592041204"
+        ixy="0.000355370179728103"
+        ixz="-0.000117643918386905"
+        iyy="0.00320089939139651"
+        iyz="1.128994768011E-05"
+        izz="0.00342089866585912" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/calf_rr.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/calf_rr.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_rearright_leg_3"
+    type="revolute">
+    <origin
+      xyz="0.2 0 0"
+      rpy="0 0 -0.69813" />
+    <parent
+      link="thigh_rr" />
+    <child
+      link="calf_rr" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="foot_rr">
+    <inertial>
+      <origin
+        xyz="1.9549344576486E-07 2.79533661995401E-06 -0.000956162206881772"
+        rpy="0 0 0" />
+      <mass
+        value="1.50940787558982" />
+      <inertia
+        ixx="0.00351551678644104"
+        ixy="1.91479959838555E-05"
+        ixz="1.35710421153953E-07"
+        iyy="0.0035364416173253"
+        iyz="1.8928876338675E-07"
+        izz="0.00690491426908608" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/foot_rr.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.698039215686274 0.698039215686274 0.698039215686274 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/foot_rr.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_rearright_leg_4"
+    type="continuous">
+    <origin
+      xyz="0.2 0 0.0514"
+      rpy="0 0 2.2689" />
+    <parent
+      link="calf_rr" />
+    <child
+      link="foot_rr" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="battery_fl">
+    <inertial>
+      <origin
+        xyz="0.00062777 2.6528E-05 0.04828"
+        rpy="0 0 0" />
+      <mass
+        value="0.86022" />
+      <inertia
+        ixx="0.0007079"
+        ixy="1.7921E-09"
+        ixz="-4.4298E-08"
+        iyy="0.0010264"
+        iyz="-7.8339E-07"
+        izz="0.00076657" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/battery_fl.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.69804 0.69804 0.69804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/battery_fl.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="battery_joint_fl"
+    type="fixed">
+    <origin
+      xyz="0.09775 0.07 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="battery_fl" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="battery_fr">
+    <inertial>
+      <origin
+        xyz="0.00062778 2.6525E-05 0.04828"
+        rpy="0 0 0" />
+      <mass
+        value="0.86022" />
+      <inertia
+        ixx="0.0007079"
+        ixy="2.1922E-09"
+        ixz="-4.4302E-08"
+        iyy="0.0010264"
+        iyz="-7.8339E-07"
+        izz="0.00076657" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/battery_fr.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.69804 0.69804 0.69804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/battery_fr.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="battery_joint_fr"
+    type="fixed">
+    <origin
+      xyz="0.09775 -0.07 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="battery_fr" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="battery_rl">
+    <inertial>
+      <origin
+        xyz="-0.000567802050741362 -2.65394640119321E-05 0.0482795590278208"
+        rpy="0 0 0" />
+      <mass
+        value="0.860218258271939" />
+      <inertia
+        ixx="0.000707903890299248"
+        ixy="2.34338678075394E-09"
+        ixz="4.43136934201917E-08"
+        iyy="0.00102637967807732"
+        iyz="7.83393058747855E-07"
+        izz="0.000766572406416741" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/battery_rl.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.698039215686274 0.698039215686274 0.698039215686274 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/battery_rl.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="battery_joint_rl"
+    type="fixed">
+    <origin
+      xyz="-0.09775 0.07 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="battery_rl" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="battery_rr">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/battery_rr.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://titatit_robot_2/meshes/battery_rr.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="battery_joint_rr"
+    type="fixed">
+    <origin
+      xyz="-0.09775 -0.07 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="battery_rr" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

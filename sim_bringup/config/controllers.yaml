@@ -1,0 +1,61 @@
+# This config file is used by ros2_control
+/**:
+  controller_manager:
+    ros__parameters:
+      update_rate: 500  # Hz
+      # is_async: true
+          
+      joint_state_broadcaster:
+        type: joint_state_broadcaster/JointStateBroadcaster
+      imu_sensor_broadcaster:
+        type: imu_sensor_broadcaster/IMUSensorBroadcaster
+      template_ros2_controller:
+        type: tita_locomotion/TemplateRos2Controller
+      effort_controller:
+        type: effort_controllers/JointGroupEffortController
+
+  imu_sensor_broadcaster:
+    ros__parameters:
+      update_rate: 500  # Hz
+      sensor_name: imu
+      frame_id:  imu
+  joint_state_broadcaster:
+    ros__parameters:
+      update_rate: 500  # Hz
+
+  template_ros2_controller:
+    ros__parameters:
+      update_rate: 500  # Hz
+      joints:
+        - joint_left_leg_1
+        - joint_left_leg_2
+        - joint_left_leg_3
+        - joint_left_leg_4
+        - joint_right_leg_1
+        - joint_right_leg_2
+        - joint_right_leg_3
+        - joint_right_leg_4
+      command_interfaces:
+        - position
+        - velocity
+        - effort
+        - kp
+        - kd
+      state_interfaces:
+        - position
+        - velocity
+        - effort
+      sensors:
+        - imu
+  
+  effort_controller:
+    ros__parameters:
+      joints:
+        - joint_left_leg_1
+        - joint_left_leg_2
+        - joint_left_leg_3
+        - joint_left_leg_4
+        - joint_right_leg_1
+        - joint_right_leg_2
+        - joint_right_leg_3
+        - joint_right_leg_4

@@ -1,0 +1,976 @@
+#VRML_SIM R2023a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/CircleArena.proto"
+
+WorldInfo {
+  ERP 0.8
+  basicTimeStep 2
+  dragForceScale 1000
+  contactProperties [
+    ContactProperties {
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.0493142894638276 -0.04057857368508742 0.9979586565646704 4.516634180711602
+  position 1.267968439602043 9.513663247571413 0.9176529263225527
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+CircleArena {
+  radius 100
+}
+
+Robot {
+  name "Ros2Supervisor"
+  controller "<extern>"
+  supervisor TRUE
+}
+
+DEF TITATIT Robot {
+  translation 1.0496504139722898 0.00023192472648045668 0.34366255070162094
+  rotation 0.0023494526795944967 0.9999589786787181 0.008747630074557767 0.0531762682442116
+  children [
+    DEF TITA_FR Solid {
+      translation 0.265 0 0
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            position -0.019847705152954063
+            axis 1 0 -4e-06
+            anchor 0 -0.0895 0
+          }
+          device [
+            RotationalMotor {
+              name "joint_frontright_leg_1"
+              minPosition -1.57
+              maxPosition 1.57
+              maxTorque 10000
+            }
+            PositionSensor {
+              name "joint_frontright_leg_1_sensor"
+            }
+          ]
+          endPoint Solid {
+            translation 0 -0.0895 0
+            rotation -0.009923204331001075 0.9999015255932584 -0.009923161395424103 1.5708984792554863
+            children [
+              Shape {
+                appearance DEF right_hip_material PBRAppearance {
+                  baseColor 0.75294 0.75294 0.75294
+                  roughness 1
+                  metalness 0
+                }
+                geometry DEF right_hip Mesh {
+                  url [
+                    "/tmp/titati_description/meshes/right_hip.STL"
+                  ]
+                }
+              }
+              HingeJoint {
+                jointParameters HingeJointParameters {
+                  position 0.5748632895918938
+                  axis 0 1 -4e-06
+                  anchor 0 -0.1826 0
+                }
+                device [
+                  RotationalMotor {
+                    name "joint_frontright_leg_2"
+                    minPosition -1.57
+                    maxPosition 1.57
+                    maxTorque 10000
+                  }
+                  PositionSensor {
+                    name "joint_frontright_leg_2_sensor"
+                  }
+                ]
+                endPoint Solid {
+                  translation 0 -0.1826 0
+                  rotation -0.9226179027823124 0.2727424143671958 0.2727412342692618 1.6512531590387547
+                  children [
+                    Shape {
+                      appearance DEF right_thigh_material PBRAppearance {
+                        baseColor 0.75294 0.75294 0.75294
+                        roughness 1
+                        metalness 0
+                      }
+                      geometry DEF right_thigh Mesh {
+                        url [
+                          "/tmp/titati_description/meshes/right_thigh.STL"
+                        ]
+                      }
+                    }
+                    HingeJoint {
+                      jointParameters HingeJointParameters {
+                        position -0.20680596976703575
+                        axis 0 0 1
+                        anchor 0.2 0 0
+                        minStop -1.1
+                        maxStop 0.85
+                      }
+                      device [
+                        RotationalMotor {
+                          name "joint_frontright_leg_3"
+                          maxTorque 10000
+                        }
+                        PositionSensor {
+                          name "joint_frontright_leg_3_sensor"
+                        }
+                      ]
+                      endPoint Solid {
+                        translation 0.2 0 0
+                        rotation 0 0 -1 1.7776059697670359
+                        children [
+                          Shape {
+                            appearance DEF right_calf_material PBRAppearance {
+                              baseColor 0.75294 0.75294 0.75294
+                              roughness 1
+                              metalness 0
+                            }
+                            geometry DEF right_calf Mesh {
+                              url [
+                                "/tmp/titati_description/meshes/right_calf.STL"
+                              ]
+                            }
+                          }
+                          HingeJoint {
+                            jointParameters HingeJointParameters {
+                              position 12.501698281585867
+                              axis 0 0 1
+                              anchor 0.2 0 0
+                            }
+                            device [
+                              RotationalMotor {
+                                name "joint_frontright_leg_4"
+                                maxTorque 10000
+                              }
+                              PositionSensor {
+                                name "joint_frontright_leg_4_sensor"
+                              }
+                            ]
+                            endPoint Solid {
+                              translation 0.2 0 0
+                              rotation 0 0 -1 0.06467233277330912
+                              children [
+                                Shape {
+                                  appearance DEF right_wheel_material PBRAppearance {
+                                    baseColor 0.69804 0.69804 0.69804
+                                    roughness 1
+                                    metalness 0
+                                  }
+                                  geometry DEF right_wheel Mesh {
+                                    url [
+                                      "/tmp/titati_description/meshes/right_wheel.STL"
+                                    ]
+                                  }
+                                }
+                              ]
+                              name "right_wheel"
+                              contactMaterial "wheel"
+                              boundingObject Cylinder {
+                                height 0.034
+                                radius 0.088
+                              }
+                              physics Physics {
+                                density -1
+                                mass 1.5377
+                                centerOfMass [
+                                  0 4.2e-05 0.001845
+                                ]
+                                inertiaMatrix [
+                                  0.003086 0.003086 0.0059413
+                                  4.7536e-08 3.5434e-08 -4.621e-08
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                        name "right_calf"
+                        boundingObject Transform {
+                          translation 0.1 0.021 0.058
+                          rotation 0 0 1 -0.13090030610042527
+                          children [
+                            Box {
+                              size 0.2 0.07 0.05
+                            }
+                          ]
+                        }
+                        physics Physics {
+                          density -1
+                          mass 0.6116
+                          centerOfMass [
+                            0.12103 0.0091 0.05039
+                          ]
+                          inertiaMatrix [
+                            0.00026444 0.0021602 0.0023188
+                            0.00018202 2.3441e-05 3.2666e-07
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                  name "right_thigh"
+                  physics Physics {
+                    density -1
+                    mass 2.365
+                    centerOfMass [
+                      0.018988 0.000908 0.091109
+                    ]
+                    inertiaMatrix [
+                      0.0024783 0.0052682 0.0067965
+                      -0.00013332 -0.00010721 -5.356e-06
+                    ]
+                  }
+                }
+              }
+            ]
+            name "right_hip"
+            physics Physics {
+              density -1
+              mass 1.9732
+              centerOfMass [
+                4.4e-05 0.014041 0.002749
+              ]
+              inertiaMatrix [
+                0.002746 0.0040655 0.0021042
+                2.2481e-07 -4.8998e-07 -3.5899e-05
+              ]
+            }
+          }
+        }
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            position 0.01859554990817844
+            axis 1 0 -4e-06
+            anchor 0 0.0895 0
+          }
+          device [
+            RotationalMotor {
+              name "joint_frontleft_leg_1"
+              minPosition -1.57
+              maxPosition 1.57
+              maxTorque 10000
+            }
+            PositionSensor {
+              name "joint_frontleft_leg_1_sensor"
+            }
+          ]
+          endPoint Solid {
+            translation 0 0.0895 0
+            rotation 0.00929724218611966 0.9999135579256174 0.009297201958946644 1.570886445810592
+            children [
+              Shape {
+                appearance DEF left_hip_material PBRAppearance {
+                  baseColor 0.75294 0.75294 0.75294
+                  roughness 1
+                  metalness 0
+                }
+                geometry DEF left_hip Mesh {
+                  url [
+                    "/tmp/titati_description/meshes/left_hip.STL"
+                  ]
+                }
+              }
+              HingeJoint {
+                jointParameters HingeJointParameters {
+                  position 0.5745175451551936
+                  axis 0 1 0
+                  anchor 0 0.1826 0
+                }
+                device [
+                  RotationalMotor {
+                    name "joint_frontleft_leg_2"
+                    minPosition -1.57
+                    maxPosition 1.57
+                    maxTorque 10000
+                  }
+                  PositionSensor {
+                    name "joint_frontleft_leg_2_sensor"
+                  }
+                ]
+                endPoint Solid {
+                  translation 0 0.1826 0
+                  rotation -0.9227051670658426 0.27259368002209605 0.272594681316431 1.6511588857661972
+                  children [
+                    Shape {
+                      appearance DEF left_thigh_material PBRAppearance {
+                        baseColor 0.75294 0.75294 0.75294
+                        roughness 1
+                        metalness 0
+                      }
+                      geometry DEF left_thigh Mesh {
+                        url [
+                          "/tmp/titati_description/meshes/left_thigh.STL"
+                        ]
+                      }
+                    }
+                    HingeJoint {
+                      jointParameters HingeJointParameters {
+                        position -0.2070650620080241
+                        axis 0 0 1
+                        anchor 0.2 0 0
+                        minStop -1.1
+                        maxStop 0.85
+                      }
+                      device [
+                        RotationalMotor {
+                          name "joint_frontleft_leg_3"
+                          maxTorque 10000
+                        }
+                        PositionSensor {
+                          name "joint_frontleft_leg_3_sensor"
+                        }
+                      ]
+                      endPoint Solid {
+                        translation 0.2 0 0
+                        rotation 0 0 -1 1.7778653681084489
+                        children [
+                          Shape {
+                            appearance DEF left_calf_material PBRAppearance {
+                              baseColor 0.75294 0.75294 0.75294
+                              roughness 1
+                              metalness 0
+                            }
+                            geometry DEF left_calf Mesh {
+                              url [
+                                "/tmp/titati_description/meshes/left_calf.STL"
+                              ]
+                            }
+                          }
+                          HingeJoint {
+                            jointParameters HingeJointParameters {
+                              position 12.500001177295267
+                              axis 0 0 1
+                              anchor 0.2 0 0
+                            }
+                            device [
+                              RotationalMotor {
+                                name "joint_frontleft_leg_4"
+                                maxTorque 10000
+                              }
+                              PositionSensor {
+                                name "joint_frontleft_leg_4_sensor"
+                              }
+                            ]
+                            endPoint Solid {
+                              translation 0.2 0 0
+                              rotation 0 0 -1 0.06636943706390495
+                              children [
+                                Shape {
+                                  appearance DEF left_wheel_material PBRAppearance {
+                                    baseColor 0.69804 0.69804 0.69804
+                                    roughness 1
+                                    metalness 0
+                                  }
+                                  geometry DEF left_wheel Mesh {
+                                    url [
+                                      "/tmp/titati_description/meshes/left_wheel.STL
+                                    ]
+                                  }
+                                }
+                              ]
+                              name "left_wheel"
+                              contactMaterial "wheel"
+                              boundingObject Cylinder {
+                                height 0.034
+                                radius 0.088
+                              }
+                              physics Physics {
+                                density -1
+                                mass 1.5376
+                                centerOfMass [
+                                  -1.6e-05 0.000206 -0.001793
+                                ]
+                                inertiaMatrix [
+                                  0.0031616 0.0031569 0.0061689
+                                  1.6324e-07 -4.4034e-08 -2.2207e-06
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                        name "left_calf"
+                        boundingObject Transform {
+                          translation 0.1 0.021 -0.058
+                          rotation 0 0 1 -0.13090030610042527
+                          children [
+                            Box {
+                              size 0.2 0.07 0.05
+                            }
+                          ]
+                        }
+                        physics Physics {
+                          density -1
+                          mass 0.6116
+                          centerOfMass [
+                            0.12103 0.009076 -0.050402
+                          ]
+                          inertiaMatrix [
+                            0.00026451 0.0021601 0.0023188
+                            0.0001824 -2.3439e-05 -3.2211e-07
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                  name "left_thigh"
+                  physics Physics {
+                    density -1
+                    mass 2.365
+                    centerOfMass [
+                      0.019003 0.000924 -0.091109
+                    ]
+                    inertiaMatrix [
+                      0.0024777 0.0052687 0.0067964
+                      -0.00013332 0.00010713 5.2693e-06
+                    ]
+                  }
+                }
+              }
+            ]
+            name "left_hip"
+            physics Physics {
+              density -1
+              mass 1.9732
+              centerOfMass [
+                -4.4e-05 -0.014041 0.002749
+              ]
+              inertiaMatrix [
+                0.002746 0.0040655 0.0021042
+                2.2481e-07 4.8998e-07 3.5899e-05
+              ]
+            }
+          }
+        }
+        Shape {
+          appearance DEF pelvis_material PBRAppearance {
+            baseColor 0.75294 0.75294 0.75294
+            roughness 1
+            metalness 0
+          }
+          geometry DEF pelvis Mesh {
+            url [
+              "/tmp/titati_description/meshes/pelvis.STL"
+            ]
+          }
+        }
+      ]
+      boundingObject Transform {
+        translation 0 0 0.017
+        children [
+          Box {
+            size 0.47 0.3 0.19
+          }
+        ]
+      }
+      physics Physics {
+        density -1
+        mass 11.637
+        centerOfMass [
+          -0.002847 -0.000372 0.01809
+        ]
+        inertiaMatrix [
+          0.047811 0.031456 0.057429
+          -1.1402e-05 0.0006116 1.4971e-05
+        ]
+      }
+    }
+    DEF TITA_BK Solid {
+      translation -0.265 0 0
+      rotation 0 0 1 3.141592653589793
+      children [
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            position -0.01766241816145489
+            axis 1 0 -4e-06
+            anchor 0 -0.0895 0
+          }
+          device [
+            RotationalMotor {
+              name "joint_rearright_leg_1"
+              minPosition -1.57
+              maxPosition 1.57
+              maxTorque 10000
+            }
+            PositionSensor {
+              name "joint_rearright_leg_1_sensor"
+            }
+          ]
+          endPoint Solid {
+            translation 0 -0.0895 0
+            rotation -0.008830752837615096 0.9999220151009103 -0.008830714628841451 1.5708779879399792
+            children [
+              Shape {
+                appearance DEF right_hip_material PBRAppearance {
+                  baseColor 0.75294 0.75294 0.75294
+                  roughness 1
+                  metalness 0
+                }
+                geometry DEF right_hip Mesh {
+                  url [
+                    "/tmp/titati_description/meshes/right_hip.STL"
+                  ]
+                }
+              }
+              HingeJoint {
+                jointParameters HingeJointParameters {
+                  position 0.6641494295327076
+                  axis 0 1 -4e-06
+                  anchor 0 -0.1826 0
+                }
+                device [
+                  RotationalMotor {
+                    name "joint_rearright_leg_2"
+                    minPosition -1.57
+                    maxPosition 1.57
+                    maxTorque 10000
+                  }
+                  PositionSensor {
+                    name "joint_rearright_leg_2_sensor"
+                  }
+                ]
+                endPoint Solid {
+                  translation 0 -0.1826 0
+                  rotation -0.8988115782607161 0.30995046227187917 0.3099491211827016 1.6772800518705164
+                  children [
+                    Shape {
+                      appearance DEF right_thigh_material PBRAppearance {
+                        baseColor 0.75294 0.75294 0.75294
+                        roughness 1
+                        metalness 0
+                      }
+                      geometry DEF right_thigh Mesh {
+                        url [
+                          "/tmp/titati_description/meshes/right_thigh.STL"
+                        ]
+                      }
+                    }
+                    HingeJoint {
+                      jointParameters HingeJointParameters {
+                        position -0.02926094106396925
+                        axis 0 0 1
+                        anchor 0.2 0 0
+                        minStop -1.1
+                        maxStop 0.85
+                      }
+                      device [
+                        RotationalMotor {
+                          name "joint_rearright_leg_3"
+                          maxTorque 10000
+                        }
+                        PositionSensor {
+                          name "joint_rearright_leg_3_sensor"
+                        }
+                      ]
+                      endPoint Solid {
+                        translation 0.2 0 0
+                        rotation 0 0 -0.9999999999999999 1.600060941063969
+                        children [
+                          Shape {
+                            appearance DEF right_calf_material PBRAppearance {
+                              baseColor 0.75294 0.75294 0.75294
+                              roughness 1
+                              metalness 0
+                            }
+                            geometry DEF right_calf Mesh {
+                              url [
+                                "/tmp/titati_description/meshes/right_calf.STL"
+                              ]
+                            }
+                          }
+                          HingeJoint {
+                            jointParameters HingeJointParameters {
+                              position -11.672128728060791
+                              axis 0 0 1
+                              anchor 0.2 0 0
+                            }
+                            device [
+                              RotationalMotor {
+                                name "joint_rearright_leg_4"
+                                maxTorque 10000
+                              }
+                              PositionSensor {
+                                name "joint_rearright_leg_4_sensor"
+                              }
+                            ]
+                            endPoint Solid {
+                              translation 0.2 0 0
+                              rotation 0 0 1 0.8942418862983821
+                              children [
+                                Shape {
+                                  appearance DEF right_wheel_material PBRAppearance {
+                                    baseColor 0.69804 0.69804 0.69804
+                                    roughness 1
+                                    metalness 0
+                                  }
+                                  geometry DEF right_wheel Mesh {
+                                    url [
+                                      "/tmp/titati_description/meshes/right_wheel.STL"
+                                    ]
+                                  }
+                                }
+                              ]
+                              name "right_wheel"
+                              contactMaterial "wheel"
+                              boundingObject Cylinder {
+                                height 0.034
+                                radius 0.088
+                              }
+                              physics Physics {
+                                density -1
+                                mass 1.5377
+                                centerOfMass [
+                                  0 4.2e-05 0.001845
+                                ]
+                                inertiaMatrix [
+                                  0.003086 0.003086 0.0059413
+                                  4.7536e-08 3.5434e-08 -4.621e-08
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                        name "right_calf"
+                        boundingObject Transform {
+                          translation 0.1 0.021 0.058
+                          rotation 0 0 1 -0.13090030610042527
+                          children [
+                            Box {
+                              size 0.2 0.07 0.05
+                            }
+                          ]
+                        }
+                        physics Physics {
+                          density -1
+                          mass 0.6116
+                          centerOfMass [
+                            0.12103 0.0091 0.05039
+                          ]
+                          inertiaMatrix [
+                            0.00026444 0.0021602 0.0023188
+                            0.00018202 2.3441e-05 3.2666e-07
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                  name "right_thigh"
+                  physics Physics {
+                    density -1
+                    mass 2.365
+                    centerOfMass [
+                      0.018988 0.000908 0.091109
+                    ]
+                    inertiaMatrix [
+                      0.0024783 0.0052682 0.0067965
+                      -0.00013332 -0.00010721 -5.356e-06
+                    ]
+                  }
+                }
+              }
+            ]
+            name "right_hip"
+            physics Physics {
+              density -1
+              mass 1.9732
+              centerOfMass [
+                4.4e-05 0.014041 0.002749
+              ]
+              inertiaMatrix [
+                0.002746 0.0040655 0.0021042
+                2.2481e-07 -4.8998e-07 -3.5899e-05
+              ]
+            }
+          }
+        }
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            position 0.01707081859443008
+            axis 1 0 -4e-06
+            anchor 0 0.0895 0
+          }
+          device [
+            RotationalMotor {
+              name "joint_rearleft_leg_1"
+              minPosition -1.57
+              maxPosition 1.57
+              maxTorque 10000
+            }
+            PositionSensor {
+              name "joint_rearleft_leg_1_sensor"
+            }
+          ]
+          endPoint Solid {
+            translation 0 0.0895 0
+            rotation 0.008534997562715543 0.99992715147834 0.008534960633611538 1.5708728511751677
+            children [
+              Shape {
+                appearance DEF left_hip_material PBRAppearance {
+                  baseColor 0.75294 0.75294 0.75294
+                  roughness 1
+                  metalness 0
+                }
+                geometry DEF left_hip Mesh {
+                  url [
+                    "/tmp/titati_description/meshes/left_hip.STL"
+                  ]
+                }
+              }
+              HingeJoint {
+                jointParameters HingeJointParameters {
+                  position 0.6644577138586366
+                  axis 0 1 0
+                  anchor 0 0.1826 0
+                }
+                device [
+                  RotationalMotor {
+                    name "joint_rearleft_leg_2"
+                    minPosition -1.57
+                    maxPosition 1.57
+                    maxTorque 10000
+                  }
+                  PositionSensor {
+                    name "joint_rearleft_leg_2_sensor"
+                  }
+                ]
+                endPoint Solid {
+                  translation 0 0.1826 0
+                  rotation -0.8987251916215726 0.310074445587692 0.31007558455681916 1.677375623660386
+                  children [
+                    Shape {
+                      appearance DEF left_thigh_material PBRAppearance {
+                        baseColor 0.75294 0.75294 0.75294
+                        roughness 1
+                        metalness 0
+                      }
+                      geometry DEF left_thigh Mesh {
+                        url [
+                          "/tmp/titati_description/meshes/left_thigh.STL"
+                        ]
+                      }
+                    }
+                    HingeJoint {
+                      jointParameters HingeJointParameters {
+                        position -0.030482491836967718
+                        axis 0 0 1
+                        anchor 0.2 0 0
+                        minStop -1.1
+                        maxStop 0.85
+                      }
+                      device [
+                        RotationalMotor {
+                          name "joint_rearleft_leg_3"
+                          maxTorque 10000
+                        }
+                        PositionSensor {
+                          name "joint_rearleft_leg_3_sensor"
+                        }
+                      ]
+                      endPoint Solid {
+                        translation 0.2 0 0
+                        rotation 0 0 -1 1.6012827979373923
+                        children [
+                          Shape {
+                            appearance DEF left_calf_material PBRAppearance {
+                              baseColor 0.75294 0.75294 0.75294
+                              roughness 1
+                              metalness 0
+                            }
+                            geometry DEF left_calf Mesh {
+                              url [
+                                "/tmp/titati_description/meshes/left_calf.STL"
+                              ]
+                            }
+                          }
+                          HingeJoint {
+                            jointParameters HingeJointParameters {
+                              position -11.67350947351305
+                              axis 0 0 1
+                              anchor 0.2 0 0
+                            }
+                            device [
+                              RotationalMotor {
+                                name "joint_rearleft_leg_4"
+                                maxTorque 10000
+                              }
+                              PositionSensor {
+                                name "joint_rearleft_leg_4_sensor"
+                              }
+                            ]
+                            endPoint Solid {
+                              translation 0.2 0 0
+                              rotation 0 0 1 0.8928611408461227
+                              children [
+                                Shape {
+                                  appearance DEF left_wheel_material PBRAppearance {
+                                    baseColor 0.69804 0.69804 0.69804
+                                    roughness 1
+                                    metalness 0
+                                  }
+                                  geometry DEF left_wheel Mesh {
+                                    url [
+                                      "/tmp/titati_description/meshes/left_wheel.STL
+                                    ]
+                                  }
+                                }
+                              ]
+                              name "left_wheel"
+                              contactMaterial "wheel"
+                              boundingObject Cylinder {
+                                height 0.034
+                                radius 0.088
+                              }
+                              physics Physics {
+                                density -1
+                                mass 1.5376
+                                centerOfMass [
+                                  -1.6e-05 0.000206 -0.001793
+                                ]
+                                inertiaMatrix [
+                                  0.0031616 0.0031569 0.0061689
+                                  1.6324e-07 -4.4034e-08 -2.2207e-06
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                        name "left_calf"
+                        boundingObject Transform {
+                          translation 0.1 0.021 -0.058
+                          rotation 0 0 1 -0.13090030610042527
+                          children [
+                            Box {
+                              size 0.2 0.07 0.05
+                            }
+                          ]
+                        }
+                        physics Physics {
+                          density -1
+                          mass 0.6116
+                          centerOfMass [
+                            0.12103 0.009076 -0.050402
+                          ]
+                          inertiaMatrix [
+                            0.00026451 0.0021601 0.0023188
+                            0.0001824 -2.3439e-05 -3.2211e-07
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                  name "left_thigh"
+                  physics Physics {
+                    density -1
+                    mass 2.365
+                    centerOfMass [
+                      0.019003 0.000924 -0.091109
+                    ]
+                    inertiaMatrix [
+                      0.0024777 0.0052687 0.0067964
+                      -0.00013332 0.00010713 5.2693e-06
+                    ]
+                  }
+                }
+              }
+            ]
+            name "left_hip"
+            physics Physics {
+              density -1
+              mass 1.9732
+              centerOfMass [
+                -4.4e-05 -0.014041 0.002749
+              ]
+              inertiaMatrix [
+                0.002746 0.0040655 0.0021042
+                2.2481e-07 4.8998e-07 3.5899e-05
+              ]
+            }
+          }
+        }
+        Shape {
+          appearance DEF pelvis_material PBRAppearance {
+            baseColor 0.75294 0.75294 0.75294
+            roughness 1
+            metalness 0
+          }
+          geometry DEF pelvis Mesh {
+            url [
+              "/tmp/titati_description/meshes/pelvis.STL"
+            ]
+          }
+        }
+      ]
+      name "solid(1)"
+      boundingObject Transform {
+        translation 0 0 0.017
+        children [
+          Box {
+            size 0.47 0.3 0.19
+          }
+        ]
+      }
+      physics Physics {
+        density -1
+        mass 11.637
+        centerOfMass [
+          -0.002847 -0.000372 0.01809
+        ]
+        inertiaMatrix [
+          0.047811 0.031456 0.057429
+          -1.1402e-05 0.0006116 1.4971e-05
+        ]
+      }
+    }
+    Accelerometer {
+    }
+    InertialUnit {
+      name "imu"
+    }
+    Gyro {
+    }
+    GPS {
+    }
+  ]
+  name "titati_webots"
+  physics Physics {
+    density -1
+    mass 0.0001
+  }
+  controller "<extern>"
+  supervisor TRUE
+}
+Solid {
+  translation 1.8 0 0.05
+  rotation 0 1 0 -0.35
+  children [
+    Shape {
+      appearance PBRAppearance {
+      }
+      geometry Box {
+        size 2 2 0.01
+      }
+    }
+  ]
+  boundingObject Box {
+    size 2 2 0.01
+  }
+}
+Solid {
+  translation 3.67 0 0.05
+  rotation 0 1 0 0.35
+  children [
+    Shape {
+      appearance PBRAppearance {
+      }
+      geometry Box {
+        size 2 2 0.01
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject Box {
+    size 2 2 0.01
+  }
+}

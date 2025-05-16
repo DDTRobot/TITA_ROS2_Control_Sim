@@ -1,0 +1,9 @@
+<library path="titati_webots_bridge">
+  <class 
+    type="titati_webots_ros2_control::WebotsBridge" 
+    base_class_type="webots_ros2_control::Ros2ControlSystemInterface">
+    <description>
+      This is a Webots ROS 2 plugin example
+    </description>
+  </class>
+</library>

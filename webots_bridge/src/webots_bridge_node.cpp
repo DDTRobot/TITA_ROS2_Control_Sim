@@ -55,19 +55,25 @@ void WebotsBridge::init(
     if (!joint.sensor && !joint.motor) {
       throw std::runtime_error("Cannot find a Motor or PositionSensor with name " + joint.name);
     }
+    // Check if state interfaces have initial positions
+    for (hardware_interface::InterfaceInfo stateInterface : component.state_interfaces) {
+      if (stateInterface.name == "position" && !stateInterface.initial_value.empty()) {
+        joint.position = std::stod(stateInterface.initial_value);
+        wb_motor_set_position(joint.motor, std::stod(stateInterface.initial_value));
+      }
+    }
 
     mJoints.push_back(joint);
   }
-
   for (hardware_interface::ComponentInfo component : info.sensors) {
     std::string sensor_name = component.name;
-    WbDeviceTag device = wb_robot_get_device(sensor_name.c_str());
+    WbDeviceTag device = wb_robot_get_device(std::string(sensor_name + " inertial").c_str());
     WbNodeType type = wb_device_get_node_type(device);
     if (type == WB_NODE_INERTIAL_UNIT) {
       mImu.name = sensor_name;
       mImu.inertialUnit = device;
-      mImu.gyro = wb_robot_get_device("gyro");
-      mImu.accelerometer = wb_robot_get_device("accelerometer");  // defalt name
+      mImu.gyro = wb_robot_get_device(std::string(sensor_name + " gyro").c_str());
+      mImu.accelerometer = wb_robot_get_device(std::string(sensor_name + " accelerometer").c_str());  // defalt name
       wb_inertial_unit_enable(mImu.inertialUnit, wb_robot_get_basic_time_step());
       if (mImu.gyro) wb_gyro_enable(mImu.gyro, wb_robot_get_basic_time_step());
       if (mImu.accelerometer)
@@ -162,51 +168,36 @@ hardware_interface::return_type WebotsBridge::read(
 
   const double deltaTime = wb_robot_get_time() - lastReadTime;
   lastReadTime = wb_robot_get_time();
-  size_t index = 0;
+
   for (Joint & joint : mJoints) {
     if (joint.sensor) {
       const double position = wb_position_sensor_get_value(joint.sensor);
-      auto sin = std::sin(position);
-      auto cos = std::cos(position);
-      double position_modify = std::atan2(sin, cos);
-      double velocity;
-      if (std::abs(position_modify - joint.position) > M_PI) {
-        auto sign = position_modify > joint.position ? 1 : -1;
-        velocity = (position_modify - 2 * M_PI * sign - joint.position) / deltaTime;
-      } else {
-        velocity = (position_modify - joint.position) / deltaTime;
-      }
+      const double velocity = std::isnan(joint.position) ? NAN : (position - joint.position) / deltaTime;
 
       if (!std::isnan(joint.velocity)) {
         joint.acceleration = (joint.velocity - velocity) / deltaTime;
       }
       joint.velocity = velocity;
-      joint.position = position_modify;
+      joint.position = position;
       joint.effort = wb_motor_get_torque_feedback(joint.motor) + joint.effortCommand;
     }
-    if (index == 1 || index == 5) {
-      if (joint.position < -2.5) {
-        joint.position += 2 * M_PI;
-      }
-    }
-    index++;
   }
 
-  if (mImu.linear_acceleration) {
+  if (mImu.accelerometer != 0) {
     const double * values = wb_accelerometer_get_values(mImu.accelerometer);
     mImu.linear_acceleration[0] = values[0];
     mImu.linear_acceleration[1] = values[1];
     mImu.linear_acceleration[2] = values[2];
   }
 
-  if (mImu.angular_velocity) {
+  if (mImu.gyro != 0) {
     const double * values = wb_gyro_get_values(mImu.gyro);
     mImu.angular_velocity[0] = values[0];
     mImu.angular_velocity[1] = values[1];
     mImu.angular_velocity[2] = values[2];
   }
 
-  if (mImu.orientation) {
+  if (mImu.inertialUnit != 0) {
     const double * values = wb_inertial_unit_get_quaternion(mImu.inertialUnit);
     mImu.orientation[0] = values[0];
     mImu.orientation[1] = values[1];

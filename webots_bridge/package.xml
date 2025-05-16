@@ -15,7 +15,7 @@
   <depend>realtime_tools</depend>
   <depend>webots_ros2_driver</depend>
   <depend>webots_ros2_control</depend>
-  <depend>tita_description</depend>
+  <depend>robot_description</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_auto</test_depend>

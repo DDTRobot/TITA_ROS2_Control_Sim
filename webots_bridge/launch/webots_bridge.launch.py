@@ -2,73 +2,62 @@
 import os
 import launch
 from launch import LaunchDescription
-from launch.substitutions import Command, FindExecutable, PathJoinSubstitution, LaunchConfiguration
+from launch.substitutions import PathJoinSubstitution, LaunchConfiguration
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
-from launch.actions import ExecuteProcess
 from ament_index_python.packages import get_package_share_directory
 from webots_ros2_driver.webots_launcher import WebotsLauncher
 from webots_ros2_driver.webots_controller import WebotsController
 
 from webots_ros2_driver.urdf_spawner import URDFSpawner, get_webots_driver_node
-from launch.actions import DeclareLaunchArgument
 from launch.actions import OpaqueFunction
+import xacro
 
-prefix="tita"
 
 def launch_setup(context, *args, **kwargs):
-    yaml_path = LaunchConfiguration('yaml_path')
-    urdf = LaunchConfiguration('urdf')
-    ctrl_mode = LaunchConfiguration('ctrl_mode')
+    robot_name = LaunchConfiguration("robot").perform(context)
+    ns = LaunchConfiguration("ns").perform(context)
+
+    robot_xacro_path = os.path.join(
+        get_package_share_directory(robot_name + "_description"),
+        "xacro",
+        "robot.xacro",
+    )
+
+    robot_description = xacro.process_file(
+        robot_xacro_path, mappings={"hw_env": "webots"}
+    ).toxml()
+    spawn_robot = URDFSpawner(
+        name=robot_name,
+        robot_description=robot_description,
+        # relative_path_prefix=os.path.join(robot_name + "_description", 'resource'),
+        translation="0 0 0.4",
+        rotation="0 0 0 0",
+    )
+
     webots = WebotsLauncher(
         world=PathJoinSubstitution(
-            [FindPackageShare("webots_bridge"), "worlds", "tita.wbt"]
+            [FindPackageShare("webots_bridge"), "worlds", "empty_world.wbt"]
         ),
         ros2_supervisor=True,
     )
-    webots_event_handler = launch.actions.RegisterEventHandler(
-        event_handler=launch.event_handlers.OnProcessExit(
-            target_action=webots,
-            on_exit=[launch.actions.EmitEvent(event=launch.events.Shutdown())],
-        )
-    )
-    robot_description_content_dir = PathJoinSubstitution(
-        [FindPackageShare("tita_description"), "tita" , "xacro", urdf]
-    )
-    xacro_executable = FindExecutable(name="xacro")
 
-    robot_description_content = Command(
-        [
-            PathJoinSubstitution([xacro_executable]),
-            " ",
-            robot_description_content_dir,
-            " ",
-            "ctrl_mode:=",
-            ctrl_mode,
-            " ",
-            "sim_env:=",
-            "webots",
-        ]
-    )
-
-    robot_description = {"robot_description": robot_description_content}
-
-    yaml_path_string = yaml_path.perform(context)
     robot_controllers = os.path.join(
-        get_package_share_directory(yaml_path_string),
+        get_package_share_directory("webots_bridge"),
         "config",
         "controllers.yaml",
     )
 
     tita_driver = WebotsController(
-        robot_name="tita_webots",
+        robot_name=robot_name,
         parameters=[
-            robot_description,
-            robot_controllers,
+            {"robot_description": robot_description},
             {"use_sim_time": True},
+            {"set_robot_state_publisher": False},
+            robot_controllers,
         ],
         respawn=True,
-        namespace=prefix,
+        namespace=ns,
     )
 
     robot_state_pub_node = Node(
@@ -76,45 +65,88 @@ def launch_setup(context, *args, **kwargs):
         executable="robot_state_publisher",
         output="both",
         parameters=[
-            robot_description,
-            {"frame_prefix": prefix+"/"},
+            {"robot_description": robot_description},
+            {"frame_prefix": ns + "/"},
         ],
-        namespace=prefix, 
+        namespace=ns,
+    )
+    joint_state_broadcaster_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=[
+            "joint_state_broadcaster",
+            "--controller-manager",
+            ns + "/controller_manager",
+        ],
+    )
+
+    imu_sensor_broadcaster_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=[
+            "imu_sensor_broadcaster",
+            "--controller-manager",
+            ns + "/controller_manager",
+        ],
+    )
+
+    def get_ros2_nodes(*args):
+        return [
+            spawn_robot,
+            launch.actions.RegisterEventHandler(
+                event_handler=launch.event_handlers.OnProcessIO(
+                    target_action=spawn_robot,
+                    on_stdout=lambda event: get_webots_driver_node(
+                        event,
+                        [
+                            robot_state_pub_node,
+                            tita_driver,
+                            joint_state_broadcaster_spawner,
+                            imu_sensor_broadcaster_spawner,
+                        ],
+                    ),
+                )
+            ),
+        ]
+
+    webots_event_handler = launch.actions.RegisterEventHandler(
+        event_handler=launch.event_handlers.OnProcessExit(
+            target_action=webots,
+            on_exit=[launch.actions.EmitEvent(event=launch.events.Shutdown())],
+        )
+    )
+
+    ros2_reset_handler = launch.actions.RegisterEventHandler(
+        event_handler=launch.event_handlers.OnProcessExit(
+            target_action=webots._supervisor,
+            on_exit=get_ros2_nodes,
+        )
     )
 
     return [
         webots,
         webots._supervisor,
-        robot_state_pub_node,
-        tita_driver,
         webots_event_handler,
-    ]
+        ros2_reset_handler,
+    ] + get_ros2_nodes()
+
 
 def generate_launch_description():
     declared_arguments = []
     declared_arguments.append(
-        DeclareLaunchArgument(
-            "ctrl_mode",
-            default_value="wbc",
-            choices=["wbc", "sdk", "mcu"],
-            description="Enable sdk of joint effort input",
-        )
-    )    
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "urdf",
-            default_value="robot.xacro",
-            description="Define urdf file in description folder",
+        launch.actions.DeclareLaunchArgument(
+            "robot",
+            default_value="tita",
+            description="Path to the robot description file",
         )
     )
     declared_arguments.append(
-        DeclareLaunchArgument(
-            "yaml_path",
-            default_value="webots_bridge",
-            description="Define yaml file folder",
+        launch.actions.DeclareLaunchArgument(
+            "ns",
+            default_value="",
+            description="Namespace of launch",
         )
     )
     return LaunchDescription(
-        declared_arguments  + 
-        [OpaqueFunction(function=launch_setup)]
+        declared_arguments + [OpaqueFunction(function=launch_setup)]
     )

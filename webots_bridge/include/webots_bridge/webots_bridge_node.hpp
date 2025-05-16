@@ -57,9 +57,9 @@ struct Joint
 struct InertiaUnit
 {
   std::string name;
-  WbDeviceTag inertialUnit;
-  WbDeviceTag gyro;
-  WbDeviceTag accelerometer;
+  WbDeviceTag inertialUnit{0};
+  WbDeviceTag gyro{0};
+  WbDeviceTag accelerometer{0};
   double linear_acceleration[3];
   double angular_velocity[3];
   double orientation[4];  // x y z w

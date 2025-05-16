@@ -19,28 +19,76 @@ Tita simulation environments, including `Webots` and `Gazebo`.
 - **Gazebo**: classic
 
 ## Dependencies
-
+> `Webots` and `Gazebo` can run independently and are not in a mutually dependent relationship.
 ```bash
 sudo apt install ros-humble-ros2-control
 sudo apt install ros-humble-ros2-controllers
 
-# build webots
+# if build webots
 sudo apt install ros-humble-webots-ros2
-# build gazebo
+
+# if build gazebo
 sudo apt install ros-humble-gazebo-ros2-control
 sudo apt install ros-humble-gazebo-ros
+```
+## Modify Urdf2webots with Hard Joint Limits (optional)
+Webots use `urdf2webots` to import urdf/xacro into webots. But builtin `urdf2webots` cannot support hard joint limits. You can modify `urdf2webots` to support hard joint limits.
+```
+sudo vim /opt/ros/humble/lib/python3.10/site-packages/webots_ros2_importer/urdf2webots/urdf2webots/writeRobot.py
+# Comment out line 574-577, like this:
+    # if joint.limit.lower != 0.0:
+    #     robotFile.write((level + 3) * indent + 'minPosition ' + str(joint.limit.lower) + '\n')
+    # if joint.limit.upper != 0.0:
+    #     robotFile.write((level + 3) * indent + 'maxPosition ' + str(joint.limit.upper) + '\n')
+# Add the following codes to line 527 and line 551 respectively:
+        if joint.limit.lower != 0.0:
+            robotFile.write((level + 2) * indent + 'minStop ' + str(joint.limit.lower) + '\n')
+        if joint.limit.upper != 0.0:
+            robotFile.write((level + 2) * indent + 'maxStop ' + str(joint.limit.upper) + '\n') 
 ```
 
 ## Build Package
 
 ```bash
-colcon build --packages-up-to sim_bringup 
+# if build webots
+colcon build --packages-up-to webots_bridge
 source install/setup.bash
-ros2 launch sim_bringup sim_bringup.launch.py sim_env:=gazebo #[option: webots, gazebo]
+ros2 launch webots_bridge webots_bridge.launch.py # webots
+
+# if build gazebo
+colcon build --packages-up-to gazebo_bridge 
+source install/setup.bash
+ros2 launch gazebo_bridge gazebo_bridge.launch.py # gazebo
 ```
-In the launch file, the default controller to start is `effort_controllers/JointGroupEffortController`. Create a new terminal and enter the following command to confirm if the controller is working properly.
-```bash
-ros2 topic pub /tita/effort_controller/commands std_msgs/msg/Float64MultiArray "{data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 10.0]}"
+## Docker(webots only)
+### Build 
+``` bash 
+docker build . --file Dockerfile --tag webots_ros2:latest
 ```
-![alt text](doc/output.gif)
-If you want to write your own controller, you can modify it according to `template_ros2_controller`.
+To use the proxy, you need to set the proxy environment variables for the docker container.
+```
+sudo mkdir -p /etc/systemd/system/docker.service.d
+sudo vim /etc/systemd/system/docker.service.d/http-proxy.conf
+```
+Add the following content to the file, here is local proxy, you can change it to your own proxy.
+```
+[Service]
+Environment="HTTP_PROXY=http://127.0.0.1:8123"
+Environment="HTTPS_PROXY=http://127.0.0.1:8123"
+```
+Restart the docker service:
+```
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+### Run
+``` bash 
+xhost +local:root
+docker run -it --rm --net=host --privileged --name webots_ros2 -v /tmp/.X11-unix:/tmp/.X11-unix -v $(pwd):/workspace -w /workspace -e DISPLAY=$DISPLAY webots_ros2:latest 
+```
+### Clean the temporary Images
+You can run the following command to remove all temporary images:
+``` bash
+docker system prune
+```
